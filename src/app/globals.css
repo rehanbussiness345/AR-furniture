@@ -1,0 +1,116 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-accent: var(--font-instrument), Georgia, serif;
+
+  --color-ink: #041d44; /* deep navy — primary text / dark surfaces */
+  --color-ink-soft: #002855;
+  --color-mist: #f6f6f6; /* light section background */
+  --color-sky: #e1edf5; /* soft blue accent section */
+  --color-leaf: #108474; /* discount / success green */
+  --color-gold: #ffad0a; /* review stars */
+
+  --animate-kenburns: kenburns 18s ease-in-out infinite alternate;
+
+  @keyframes kenburns {
+    from {
+      transform: scale(1);
+    }
+    to {
+      transform: scale(1.08);
+    }
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #fff;
+  color: var(--color-ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: #041d44;
+  color: #fff;
+}
+
+/* thin elegant scrollbar for rails (hidden but scrollable) */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* underline reveal for nav links */
+.nav-link {
+  position: relative;
+}
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  height: 1.5px;
+  width: 100%;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.nav-link:hover::after,
+.nav-link[data-active="true"]::after {
+  transform: scaleX(1);
+}
+
+/* fade-up reveal used sparingly across sections */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.reveal {
+  animation: rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.reveal-1 {
+  animation-delay: 0.12s;
+}
+.reveal-2 {
+  animation-delay: 0.24s;
+}
+.reveal-3 {
+  animation-delay: 0.36s;
+}
+
+details > summary {
+  list-style: none;
+}
+details > summary::-webkit-details-marker {
+  display: none;
+}
+
+/* long-form page content */
+.prose-block p {
+  margin-bottom: 1rem;
+  font-size: 15px;
+  line-height: 1.75;
+  color: rgb(4 29 68 / 0.68);
+}
+.prose-block p:last-child {
+  margin-bottom: 0;
+}
+.prose-block strong {
+  color: #041d44;
+}
